@@ -3,7 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [taxData, setTaxData] = useState(null);
   const [history, setHistory] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,10 +59,10 @@ const Form = () => {
             min={0}
           />
         ))}
-        <div className="flex justify-between">
+        <div className="flex justify-between space-x-2">
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded w-1/2 mr-2"
+            className="bg-blue-500 text-white px-4 py-2 rounded w-1/3"
           >
             Submit
           </button>
@@ -72,9 +72,19 @@ const Form = () => {
               setIsModalOpen(true);
               fetchHistory();
             }}
-            className="bg-gray-500 text-white px-4 py-2 rounded w-1/2"
+            className="bg-gray-500 text-white px-4 py-2 rounded w-1/3"
           >
             History
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              reset();
+              setTaxData(null);
+            }}
+            className="bg-red-500 text-white px-4 py-2 rounded w-1/3"
+          >
+            Reset
           </button>
         </div>
       </form>
